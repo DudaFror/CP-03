@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP 03 - Catálogo de produtos</title>
+</head>
+
+<body>
+    <h1>Catálogo de Produtos</h1>
+
+    <button onclick="listarTodos()">Listar Todos</button>
+
+    <form onsubmit="filtrar(event)">
+        <label for="categoria">Categoria:</label>
+        <select id="categoria">
+            <option value="">Todas</option>
+            <option value="Eletrônico">Eletrônico</option>
+            <option value="Vestuário">Vestuário</option>
+            <option value="Livros">Livros</option>
+        </select>
+
+        <label>
+            <input type="checkbox" id="disponiveis"> Somente disponíveis
+        </label>
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <div id="produtos"></div>
+
+</body>
+<script>
+    const produtos = [
+        { nome: "Smartphone", preco: 1500, categoria: "Eletrônico", disponibilidade: true },
+        { nome: "Notebook", preco: 3500, categoria: "Eletrônico", disponibilidade: false },
+        { nome: "Camiseta", preco: 50, categoria: "Vestuário", disponibilidade: true },
+        { nome: "Calça Jeans", preco: 120, categoria: "Vestuário", disponibilidade: true },
+        { nome: "Tênis", preco: 200, categoria: "Vestuário", disponibilidade: false },
+        { nome: "Livro de JS", preco: 80, categoria: "Livros", disponibilidade: true },
+        { nome: "Livro de HTML", preco: 60, categoria: "Livros", disponibilidade: true },
+        { nome: "Fone de Ouvido", preco: 90, categoria: "Eletrônico", disponibilidade: true },
+        { nome: "Tablet", preco: 1200, categoria: "Eletrônico", disponibilidade: false },
+        { nome: "Vestido", preco: 150, categoria: "Vestuário", disponibilidade: true },
+    ];
+    function mostrarProdutos(lista) {
+        const container = document.getElementById("produtos");
+        container.innerHTML = "";
+        lista.forEach(produto => {
+            const div = document.createElement("div");
+            div.className = "produto";
+            div.innerHTML = `<strong>${produto.nome}</strong><br>
+                         Preço: R$ ${produto.preco}<br>
+                         Categoria: ${produto.categoria}<br>
+                         Disponível: ${produto.disponibilidade ? "Sim" : "Não"}`;
+            container.appendChild(div);
+        });
+    }
+    function listarTodos() {
+        mostrarProdutos(produtos);
+    }
+    function filtrar(event) {
+        event.preventDefault();
+        const categoriaSelecionada = document.getElementById("categoria").value;
+        const somenteDisponiveis = document.getElementById("disponiveis").checked;
+
+        const filtrados = produtos.filter(p => {
+            const categoriaOk = categoriaSelecionada === "" || p.categoria === categoriaSelecionada;
+            const disponibilidadeOk = !somenteDisponiveis || p.disponibilidade;
+            return categoriaOk && disponibilidadeOk;
+        });
+
+        mostrarProdutos(filtrados);
+    }
+</script>
+
+</html>
