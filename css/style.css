@@ -10,7 +10,7 @@ body{
     border-radius: 10px;
 }
 
-.produto :hover{
+.produto:hover{
     background-color: #f0f8ff;
     border-color: #007bff;
 }
