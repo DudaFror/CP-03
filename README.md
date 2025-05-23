@@ -3,6 +3,14 @@
 Este é um projeto simples de catálogo online desenvolvido com HTML, CSS e JavaScript puro. O objetivo  da aplicação é permitir que os usuários visualizem, filtrem e interajam com uma lista de produtos organizada por categorias (Eletrônico, Vestuário e Livro).
 
 
+## 👩‍💻 Integrante
+
+- **Nome:** Eduarda de Castro Coutinho dos Santos  
+- **RM:** 562184
+
+---
+
+
 ## 📋 Funcionalidades
 
 - Exibir todos os produtos cadastrados.
